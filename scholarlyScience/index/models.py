@@ -5,7 +5,8 @@ class companies(models.Model):
     bgImage = models.TextField()
     companyName = models.CharField(max_length=100)
     location = models.CharField(max_length=100)
-    scale = models.CharField(max_length=100)
+    # scale = models.CharField(max_length=100)
+    assignment = models.IntegerField()
     jobs = models.CharField(max_length=100)
     
 
