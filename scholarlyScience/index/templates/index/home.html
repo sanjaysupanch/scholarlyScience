@@ -1,0 +1,106 @@
+{%extends "index/base.html"%}
+{%block content%}
+    <div class="ContentPage" style="padding-top: 4em;">
+        <div class="HomePage">
+            <h2 class="MuiTypography-root Tagline1 MuiTypography-h2">Engineering teams that fit your preferences.</h2>
+            <h2 class="MuiTypography-root Tagline2 MuiTypography-h2"> Search by culture, tech stack, values or perks.
+              Sort by science-based match score.</h2>
+            <!--filter section-->
+            <div class="Content-Wrapper Content-Wrapper-Desktop">
+                <aside>
+                    <div class="Filters">
+                        <div class="FilterCategory">
+                            <!-- <h5 class="MuiTypography-root FilterCategory-Heading MuiTypography-h5">Location</h5> -->
+                            <!-- <label class="MuiFormControlLabel-root">
+                                <span class="MuiButtonBase-root MuiIconButton-root jss410 MuiCheckbox-root MuiCheckbox-colorSecondary FilterCheckbox jss411 Mui-checked MuiIconButton-colorSecondary" aria-disabled="false">
+                                    <span class="MuiIconButton-label"><input class="jss413" type="checkbox" data-indeterminate="false" value="1043"></span>
+                                        <span class="MuiTouchRipple-root"></span>
+                                </span>
+                                <span class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1">Remote_friendly</span>
+                                &nbsp;&nbsp;&nbsp;
+                            </label> -->
+                            <br><br><br>
+                            
+                            <div>
+                                <b class="text-dark">Location</b><br>
+                                <span class="bg-dark text-light ">Remote-friendly</span>
+                                {% for i in list_set %}
+                                        <span class=''><a href="?location={{i}}">{{i}}</a></span>
+                                        
+                                {% endfor %}
+    
+                            </div><br><br><br>
+
+                            <div>
+                                <b>SCALE</b><br>
+                                {% for i in list_scale %}
+                                        <span class=""><a href="?scale={{i}}">{{i}}</a></span>
+                                        
+                                {% endfor %}
+    
+                            </div><br><br><br>
+                            <div>
+                                <b>TECHNOLOGY</b><br>
+                                {% for i in list_tech %}
+                                        <span class=" "><a href="?tech={{i}}">{{i}}</a></span>  
+                                        
+                                {% endfor %}
+    
+                            </div>
+
+                        </div>
+                        
+                    </div>
+                </aside>
+            
+            <!--company cards-->
+            <div class="Content">
+                <div class="MuiGrid-root Companies MarginBottom MuiGrid-container MuiGrid-spacing-xs-2 MuiGrid-justify-xs-space-around">
+
+                   {% for company in content %}
+                      <div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-12 MuiGrid-grid-md-12 MuiGrid-grid-lg-6">
+                        <div class="CompanyCard">
+                            <div class="MuiPaper-root MuiCard-root TheCard MuiPaper-elevation1 MuiPaper-rounded">
+                                <div class="MuiCardContent-root CardContents">
+                                    <a href="details/index.html">
+                                        <div class="MainBlock">
+                                            <div class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2
+                                                MuiGrid-align-items-xs-flex-start">
+                                                <div class="MuiGrid-root MuiGrid-item">
+                                                    <div class="CompanyInfo-Image"
+                                                         style="background-image: url('{{company.bgImage}}')">
+                                                    </div>
+                                                </div>
+                                                <div class="MuiGrid-root MuiGrid-item">
+                                                    <p class="MuiTypography-root CardTitle MuiTypography-body1
+                                                    MuiTypography-gutterBottom">{{company.companyName}} </p>
+                                                    <p class="MuiTypography-root CardText MuiTypography-body1">{{company.location}}</p>
+                                                    <p class="MuiTypography-root CardText MuiTypography-body1">{{company.scale}} people</p>
+                                                    <p class="MuiTypography-root CardText MuiTypography-body1"><b>{{company.jobs}} openings</b></p>
+                                                </div>
+                                            </div>
+                                            <div class="MuiGrid-root CompanyTags MuiGrid-container MuiGrid-align-items-xs-flex-start">
+                                            
+                                            {% for i in company.cskill.all %}
+                                                  <div class="MuiGrid-root Tag MuiGrid-item">
+                                                    <p class="MuiTypography-root TagText MuiTypography-body1">
+                                                            {{i.skills}}
+                                                    </p>
+                                                  </div>
+                                           
+                                            {% endfor %}
+                                        </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                   {%endfor%}
+                </div>
+            </div>
+        
+        </div>
+    </div>
+    </div>
+{%endblock content%}
