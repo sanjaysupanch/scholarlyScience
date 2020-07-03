@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'index',
     'accounts',
     'crispy_forms',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
