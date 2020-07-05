@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'index',
     'accounts',
     'crispy_forms',
+    'django_rest_passwordreset',
 
 ]
 
@@ -57,6 +58,8 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
@@ -129,16 +132,6 @@ REST_AUTH_REGISTER_SERIALIZERS = {
     'REGISTER_SERIALIZER': 'accounts.serializers.RegisterSerializer',
 }
 
-# REST_AUTH_SERIALIZERS = {
-#     'LOGIN_SERIALIZER': 'accounts.serializers.LoginSerializer',
-# }
-
-
-
-# JWT_AUTH = {
-#     'JWT_RESPONSE_PAYLOAD_HANDLER': 'scholarlyScience.utils.my_jwt_response_handler',
-#     'JWT_VERIFY_EXPIRATION': False,
-# }
 
 LANGUAGE_CODE = 'en-us'
 
@@ -157,13 +150,14 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 REST_USE_JWT = True
+DEFAULT_FROM_EMAIL = 'pioneer.deo@gmail.com'
 
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'pioneer.deo@gmail.com'
-EMAIL_HOST_PASSWORD = 'tommyjerry99'
+EMAIL_HOST_PASSWORD = 'qwerty@asdf'
 
 
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
@@ -176,15 +170,15 @@ ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
-# ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = '/login/'
-# ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/?verification=1'
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = '/?verification=1'
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/?verification=1'
 ACCOUNT_LOGOUT_ON_GET = True
 LOGIN_REDIRECT_URL = '/accounts/profile/'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 ACCOUNT_SIGNUP_FORM_CLASS = 'accounts.forms.AllauthSignupForm'
 
 SITE_ID = 1
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
 
 

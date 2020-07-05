@@ -1,4 +1,4 @@
-# from allauth.account.views import confirm_email
+from allauth.account.views import confirm_email
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
@@ -15,7 +15,9 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('', include('index.urls')),
     path('login/', obtain_jwt_token),
-    # path('accounts-rest/registration/account-confirm-email/<pk>/', confirm_email, name='account_confirm_email'),
+    path('password_reset/', include('django_rest_passwordreset.urls', namespace='password_reset')),
+
+    # path('api/registration/account-confirm-email/<pk>/', confirm_email, name='account_confirm_email'),
     # url(r'^accounts-rest/registration/account-confirm-email/(?P<key>.+)/$', confirm_email, name='account_confirm_email'),
 
 
