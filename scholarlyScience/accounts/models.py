@@ -1,12 +1,21 @@
 from django.db import models
-from django.contrib.auth.models import *
-from django.conf import *
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
+from django.utils.translation import ugettext_lazy as _
+
+from .managers import CustomUserManager
 
 
+class CustomUser(AbstractUser):
+    username = None
+    email = models.EmailField(_('email address'), unique=True)
 
-class User(AbstractUser):
-	first_name = models.CharField(max_length=128, null=True)
-	phone_number=models.CharField(max_length=13, unique=True)
-	def __str__(self):
-		return self.email
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
+    objects = CustomUserManager()
+
+    full_name = models.CharField(blank=True, max_length=100)
+    phone_number = models.CharField(max_length=13)
+
+    def __str__(self):
+        return self.email
