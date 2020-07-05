@@ -151,6 +151,11 @@ REST_AUTH_REGISTER_SERIALIZERS = {
     'REGISTER_SERIALIZER': 'accounts.serializers.RegisterSerializer',
 }
 
+REST_AUTH_SERIALIZERS = {
+    "USER_DETAILS_SERIALIZER": "accounts.serializers.UserDetailsSerializer",
+
+}
+
 
 LANGUAGE_CODE = 'en-us'
 
@@ -194,12 +199,12 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 
 
 
-# CSRF_TRUSTED_ORIGINS = (
-#     'http://localhost:3000/',
-#     'localhost:3000',
-#     'http://127.0.0.1:8000/',
-#     '127.0.0.1'
-# )
+CSRF_TRUSTED_ORIGINS = (
+    'http://localhost:3000/',
+    'localhost:3000',
+    'http://127.0.0.1:8000/',
+    '127.0.0.1'
+)
 
 
 DEFAULT_FROM_EMAIL = 'pioneer.deo@gmail.com'

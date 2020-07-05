@@ -20,9 +20,10 @@ class RegisterSerializer(serializers.ModelSerializer):
         email = get_adapter().clean_email(email)
         if allauth_settings.UNIQUE_EMAIL:
             if email and email_address_exists(email):
-                raise serializers.ValidationError("A user is already registered with this e-mail address.")
+                raise serializers.ValidationError(
+                    "A user is already registered with this e-mail address.")
         return email
-    
+
     def get_cleaned_data(self):
         return {
             'full_name': self.validated_data.get('full_name', ''),
@@ -30,7 +31,7 @@ class RegisterSerializer(serializers.ModelSerializer):
             'password': self.validated_data.get('password', ''),
             'email': self.validated_data.get('email', ''),
         }
-    
+
     def save(self, request):
         adapter = get_adapter()
         user = adapter.new_user(request)
@@ -38,3 +39,12 @@ class RegisterSerializer(serializers.ModelSerializer):
         adapter.save_user(request, user, self)
         setup_user_email(request, user, [])
         return user
+
+
+class UserDetailsSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = CustomUser
+        fields = ('email', 'full_name', 'phone_number')
+        read_only_fields = ('email', )
+
