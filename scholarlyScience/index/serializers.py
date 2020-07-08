@@ -1,8 +1,9 @@
-from django.contrib.auth.models import User
-from .models import companies
+from accounts.models import CustomUser
+from .models import *
 from rest_framework import serializers
 
-class companiesserializer(serializers.HyperlinkedModelSerializer):
+class CompanySerializer(serializers.ModelSerializer):
+    
     class Meta:
-        model=companies
-        fields=["bgImage","companyName","location","assignment","jobs"]
+        model=company
+        fields=['company_name', 'company_logo', 'No_of_Assignments', 'if_updated', 'No_of_Openings', 'tags', 'Description', 'tech_stack', 'openings_tags', 'location']
