@@ -4,7 +4,7 @@ from index.models import *
 from rest_framework.response import Response
 from rest_framework import viewsets, permissions, status, generics
 from rest_framework.generics import * 
-from .serializers import  CompanySerializer
+from .serializers import  *
 
 
 class CompanyView(generics.ListCreateAPIView):
@@ -21,4 +21,8 @@ class CompanyView(generics.ListCreateAPIView):
         user_instance = CustomUser.objects.get(email=email)
         serializer.save(user=user_instance)
 
-    
+
+class CompanyListView(generics.ListAPIView):
+    queryset=company.objects.all()
+    serializer_class=CompanyListSerializer
+   
