@@ -12,4 +12,4 @@ class CompanyListSerializer(serializers.ModelSerializer):
     
     class Meta:
         model=company
-        fields=['company_name', 'company_logo', 'No_of_Assignments','No_of_Openings', 'tech_stack']
+        fields=['company_name', 'company_logo', 'No_of_Assignments','No_of_Openings', 'tech_stack', 'location']
