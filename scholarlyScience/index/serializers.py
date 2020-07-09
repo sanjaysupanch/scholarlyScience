@@ -6,7 +6,7 @@ class CompanySerializer(serializers.ModelSerializer):
     
     class Meta:
         model=company
-        fields=['company_name', 'company_logo', 'No_of_Assignments', 'if_updated', 'No_of_Openings', 'tags', 'Description', 'tech_stack', 'openings_tags', 'location']
+        fields=['company_name', 'company_logo', 'No_of_Assignments', 'if_updated', 'No_of_Openings', 'tags', 'Description', 'tech_stack', 'openings_tags', 'remote', 'location']
 
 class CompanyListSerializer(serializers.ModelSerializer):
     

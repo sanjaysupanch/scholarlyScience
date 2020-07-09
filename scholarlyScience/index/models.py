@@ -6,6 +6,7 @@ from accounts.models import *
 class company(models.Model):
     user=models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     company_name = models.CharField(max_length=100)
+    remote = models.BooleanField(default=False)
     company_logo = models.URLField()
     No_of_Assignments = models.IntegerField()
     if_updated = BooleanField(default=True)
