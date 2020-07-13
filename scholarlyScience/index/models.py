@@ -22,7 +22,7 @@ class assessment(models.Model):
     company_logo = models.URLField()
     tech_stack = models.CharField(max_length=100)
     company_name = models.CharField(max_length=100)
-    c_type  = models.CharField(max_length=20)
+    job_type  = models.CharField(max_length=20)
     location = models.CharField(max_length=100)
     date=models.DateField()
     

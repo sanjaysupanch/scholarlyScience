@@ -19,11 +19,11 @@ class AssesmentSerializer(serializers.ModelSerializer):
     
     class Meta:
         model=assessment
-        fields=['company_logo', 'tech_stack', 'company_name', 'c_type', 'location', 'date']
+        fields=['company_logo', 'tech_stack', 'company_name', 'job_type', 'location', 'date']
 
 
 class AssesmentListSerializer(serializers.ModelSerializer):
     
     class Meta:
         model=assessment
-        fields=['company_logo', 'tech_stack', 'company_name', 'c_type', 'location', 'date']
+        fields=['company_logo', 'tech_stack', 'company_name', 'job_type', 'location', 'date']
