@@ -26,3 +26,23 @@ class CompanyListView(generics.ListAPIView):
     queryset=company.objects.all()
     serializer_class=CompanyListSerializer
    
+
+class AssessmentView(generics.ListCreateAPIView):
+    queryset=assessment.objects.all()
+    serializer_class=AssesmentSerializer
+
+    def get_queryset(self):
+        email = self.request.user
+        user_instance = CustomUser.objects.get(email=email)
+        return assessment.objects.filter(user=user_instance)
+
+    def perform_create(self,serializer):
+        email = self.request.user
+        user_instance = CustomUser.objects.get(email=email)
+        serializer.save(user=user_instance)
+
+
+class AssessmentListView(generics.ListAPIView):
+    queryset=assessment.objects.all()
+    serializer_class=AssesmentListSerializer
+ 
