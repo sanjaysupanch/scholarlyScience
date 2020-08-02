@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from accounts.models import CustomUser
+from accounts.models import *
 from allauth.account import app_settings as allauth_settings
 from allauth.account.adapter import get_adapter
 from allauth.account.utils import setup_user_email
@@ -74,8 +74,38 @@ class UserDetailsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CustomUser
-        fields = ('email', 'full_name', 'phone_number')
-        read_only_fields = ('email', )
+        fields = ['email']
+        read_only_fields = ['email']
+
+
+class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = CustomUser
+        fields = ['id', 'email', 'full_name', 'phone_number']
+
+class ProfileSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Profile
+        fields = ['id', 'city', 'location', 'college', 'degree', 'trade', 'start_date', 'end_date', 'preferences', 'preference_role', 'skills', 'profession', 'share_profile', 'opportunities', 'linkedin', 'github', 'wechat', 'lineid', 'dribble', 'portfolio', 'first_time_login']
+
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    userprofile = ProfileSerializer()#   serializers.SerializerMethodField()
+
+    class Meta:
+        model = CustomUser
+        fields = ['id', 'email', 'full_name', 'phone_number', 'userprofile']
+
+    # def get_customuser(self, obj):
+    #    data = ProfileSerializer(obj.customuser.all(), many=True).data
+    #    return data
+class First_time_Serializer(serializers.ModelSerializer):
+
+    class Meta:
+        model= Profile
+        fields = ['id', 'first_time_login']
 
 
 class PasswordResetConfirmSerializer(serializers.Serializer):
@@ -116,3 +146,5 @@ class PasswordResetConfirmSerializer(serializers.Serializer):
 
     def save(self):
         return self.set_password_form.save()
+
+

@@ -1,21 +1,23 @@
 from django.db import models
 from django.db.models import *
-from django_mysql.models import *
 from accounts.models import *
+from django.contrib.postgres.fields import ArrayField
 
 class company(models.Model):
     user=models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     company_name = models.CharField(max_length=100)
     remote = models.BooleanField(default=False)
     company_logo = models.URLField()
-    No_of_Assignments = models.IntegerField()
+    No_of_Assignments = models.IntegerField(null=True)
     if_updated = BooleanField(default=True)
-    No_of_Openings = models.IntegerField()
-    tags = ListTextField(base_field=CharField(max_length=100), default="")
+    No_of_Openings = models.IntegerField(null=True)
+    tags = ArrayField(
+            models.CharField(max_length=5000, blank=True),blank=True
+        )
     Description = models.TextField(default="")
-    tech_stack = ListTextField(base_field=CharField(max_length=100), default="")
-    openings_tags = ListTextField(base_field=CharField(max_length=100), default="")
-    location = ListTextField(base_field=CharField(max_length=100), default="")
+    location = ArrayField(
+            models.CharField(max_length=5000, blank=True),blank=True
+        )
 
 class assessment(models.Model):
     user=models.ForeignKey(CustomUser, on_delete=models.CASCADE)
@@ -26,4 +28,6 @@ class assessment(models.Model):
     location = models.CharField(max_length=100)
     date=models.DateField()
     
-    
+
+class whatsapp(models.Model):
+    link = models.URLField() 

@@ -1,0 +1,57 @@
+{% include "account/email/email_confirmation_message.txt" %}
+{% load account %}{% user_display user as user_display %}
+{% load static %}{% load i18n %}
+
+<html>
+
+<head>
+    <style>
+        .p {
+            font-size: 18px;
+        }
+        .bg {
+            color: #008CBA;
+        }
+        .button {
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .button1 {
+            background-color: #4CAF50;
+        }
+
+        /* Green */
+        .button2 {
+            background-color: #008CBA;
+        }
+    </style>
+</head>
+
+<body style="background-color: white">
+
+    <h1 class="bg">Covid Careers : Account Activation Mail</h1>
+
+    <p>Hey {{ user_display }},</p>
+
+    <p>We know this must be bring for you but our developers just freak out on the idea of fake uses.</p>
+
+    <p>So, let's just push the button below and bring your account to life!</p>
+
+    <a href="{{ activate_url }}" ><button class="button button2">Click here to activate
+        </button></a><br>
+
+    {% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Thank you from
+    {{ site_name }}!{% endblocktrans %}
+
+
+</body>
+
+</html>
